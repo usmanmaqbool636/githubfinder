@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import UserItem from './UserItem';
 import Spinner from '../layout/spinner';
-import prototypes from 'prop-types';
-const Users = ({ loading,users }) => {
+import GithubContext from '../../Context/github/githubContext';
+const Users = () => {
+    const githubContext = useContext(GithubContext);
+    const { users, loading } = githubContext;
     if (loading) {
         return <Spinner />
     }
@@ -20,13 +22,6 @@ const Users = ({ loading,users }) => {
         return null
     }
 
-}
-Users.defaultProps = {
-    users: []
-}
-Users.prototypes = {
-    users: prototypes.array.isRequired,
-    loading: prototypes.bool.isRequired
 }
 
 export default Users;

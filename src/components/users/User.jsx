@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useContext } from 'react';
 import Spinner from '../layout/spinner';
 import { Link } from 'react-router-dom';
 import Repos from '../repos/repos';
-const User = ({match}) => {
-    const [loading, setLoading] = useState(false);
-    const [user, setUser] = useState({});
+import GithubContext from '../../Context/github/githubContext';
 
-    useEffect(()=>{
+const User = ({ match }) => {
+    const githubContext = useContext(GithubContext);
+    const { loading,getSingleUser,repos,getRepos,user } = githubContext;
+
+    useEffect(() => {
         getSingleUser(match.params.login);
-    },[match.params.login])
-    const getSingleUser = async (username) => {
-        setLoading(true)
-        const res = await axios.get(`https://api.github.com/users/${username}?&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}
-          &client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
-        setLoading(false)
-        setUser(res.data);
-    }
+        getRepos(match.params.login);
+    }, [match.params.login])
 
     if (loading) {
         return <Spinner />
@@ -93,7 +88,7 @@ const User = ({match}) => {
                         Public Gist : {public_gists}
                     </div>
                 </div>
-                <Repos username={match.params.login} />
+                <Repos repos={repos} />
             </>
         );
     }
