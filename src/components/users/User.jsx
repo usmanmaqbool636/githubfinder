@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import Repos from '../repos/repos';
 import GithubContext from '../../Context/github/githubContext';
 
+import { faTimesCircle,faCheck } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 const User = ({ match }) => {
     const githubContext = useContext(GithubContext);
     const { loading,getSingleUser,repos,getRepos,user } = githubContext;
@@ -35,7 +38,7 @@ const User = ({ match }) => {
             <>
                 <Link to="/" className="btn btn-light">goback</Link>
                 <span style={{ color: "white" }}> Hireable </span> : {" "}
-                {hireable ? <i className="fas fa-check text-success" /> : <i className="fas fa-times-circle text-danger" />}
+                {hireable ? <FontAwesomeIcon icon={faCheck} className="text-success"/> : <FontAwesomeIcon icon={faTimesCircle} className="text-danger" />}
                 <div className="card grid-2" style={{ color: "white" }}>
                     <div className="all-center">
                         <img

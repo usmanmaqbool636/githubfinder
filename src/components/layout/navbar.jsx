@@ -5,7 +5,7 @@ const Navbar = ({ icon, title }) => {
     return (
         <div className="navbar bg-purple">
             <h1 className="bonus anim" style={{ color: "#c9c6cf" }} >
-                <i className={icon} style={{ paddingRight: '5px' }}></i>
+                 <i className={icon} style={{ paddingRight: '5px' }}></i>
                 {title}
             </h1>
             <ul>
