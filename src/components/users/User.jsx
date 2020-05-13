@@ -71,7 +71,7 @@ const User = ({ match }) => {
                             </li>
                             <li>
                                 <strong>website : </strong>{blog ?
-                                    { blog }
+                                     `${blog}` 
                                     : "null"}
                             </li>
                         </ul>
